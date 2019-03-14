@@ -1,4 +1,4 @@
-# This is a very simple app with important concepts
+# This is a very simple react app with important concepts
 
 > This app consists of React Router ✔, Material UI ✔, Redux ✔, Firebase Realtime ✔, Firebase Firestore (Need to do) 
 
@@ -15,13 +15,16 @@ const config = {
 export default config;
 ```
 ## Structure
-
 firebase.js has the firebase initialisation code
+
 store.js contains the redux stuff
 
 Work your way from index.js in src folder onto the App.js and you will be fine....
 
-## Making Classes
+Components folder contains stuff that repeat like Cards....
+Pages folder is self-explanatory; bascially the pages....
+
+## Making Classes 
 Oh yeah for those that wanted to know how to make classes:
 
 ```javascript
