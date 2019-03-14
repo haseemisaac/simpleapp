@@ -14,7 +14,7 @@ const config = {
 }
 export default config;
 ```
-
+## Making Classes
 Oh yeah for those that wanted to know how to make classes:
 
 ```javascript
