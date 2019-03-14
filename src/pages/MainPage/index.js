@@ -1,28 +1,19 @@
 import React, { Component } from 'react';
-// import './App.css';
-import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
 
+import store from '../../store'
+import { app } from '../../firebase'
 
 import { connect } from 'react-redux' 
-import { bindActionCreators } from 'C:/Users/Admin/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
+import { bindActionCreators } from 'redux'
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+import TabContainer from '../../components/TabContainer'
+import ToDo from '../ToDo'
 
 const styles = {
   main:{
@@ -49,8 +40,56 @@ class MainPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      value: 0
+      value: 0,
+      loggedIn: false,
+      fireCount: 0
     }
+
+    const unsub = store.subscribe(() => {
+      console.log("changed")
+      // console.log()
+      const {user} = store.getState();
+      if(user){
+          this.setState({
+            loggedIn:true
+          })
+          this.getCount(user.uid)
+          unsub()
+      }
+    })
+
+    console.log("I am here")
+
+    setInterval((() => {
+      this.props.incrementAction({add: 1})
+      // console.log(this.props)
+    }), 1000)
+  }
+
+  getCount = (userId) => {
+    //get Counter from firebase real time database
+    //or create on if it doesn't exist
+    const db = app.database();
+
+    db.ref('counters/' + userId).once("value", data => {
+        if(data.exists()){
+          const val = data.val().count;
+          // console.log(val)
+          db.ref('counters/' + userId).set({
+            count: val+1
+          })
+          db.ref('counters/' + userId).on("value", snap => {
+            this.setState({
+              fireCount: snap.val().count
+            })
+          })
+        } else {
+          db.ref('counters/' + userId).set({
+           count: 0
+          });
+        }
+    })
+    // console.log(isThere)
   }
 
   handleChange = (event, value) => {
@@ -79,23 +118,31 @@ class MainPage extends Component {
           // Try to put this in another page
               <TabContainer>
                 <h1>This is a simple react app</h1>
-                <h2>This app consists of React Router ✔, Material UI ✔, Redux ✔ and Firebase </h2>
+                <h2>This app consists of React Router ✔, Material UI ✔, Redux ✔, Firebase Realtime ✔, Firebase Firestore (Need to do) </h2>
                 <hr/>
                 <h1>Just another counter:</h1>
                 <h2>
                   Redux: {this.props.count}
                 </h2>
+                {this.state.loggedIn && 
                 <h2>
-                  Firebase Realtime: {0} Yet to do
-                </h2>
+                  Firebase Realtime: {this.state.fireCount}
+                </h2>}
               </TabContainer>}
-          {value === 1 && 
+          {value === 1 && (this.state.loggedIn ?
           //To-Do page area
-            <TabContainer>
-              Itel;aksdf;kajsd;lkfajs;dlkfjas;lkdfjalks;dfjaslkdfj;alsm Two
-            </TabContainer>}
+            <ToDo/> : <h1 style={{textAlign:"center"}}>Please Login in order to access To-Do Section...</h1>)
+          }
         </Paper>
       </div>)
+  }
+}
+
+
+const incrementAction = (data) => {
+  return {
+    type: "INCREMENT",
+    payload: data
   }
 }
 
@@ -103,4 +150,9 @@ const mapStateToProps = (state) => ({
   count: state.count
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(MainPage));
+//Connects the functions to props
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({incrementAction}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MainPage));

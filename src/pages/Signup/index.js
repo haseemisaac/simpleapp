@@ -6,9 +6,8 @@ import { app } from '../../firebase'
 import Snackbar from "@material-ui/core/Snackbar";
 import MySnackbarContentWrapper from '../../components/MySnackbarContentWrapper'
 
-
-import { connect } from 'react-redux' 
 import store from '../../store'
+
 
 const styles = theme => ({
     margin: {
@@ -25,7 +24,9 @@ const styles = theme => ({
     }
 });
 
-class Login extends React.Component {
+
+
+class Signup extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -35,7 +36,7 @@ class Login extends React.Component {
             errorType: "error",
             errorMessage: "Error has happened"
         }
-        // console.log(store)
+
         const unsub = store.subscribe(() => {
             console.log("changed")
             // console.log()
@@ -47,38 +48,30 @@ class Login extends React.Component {
         })
     }
 
-    handleClick = () => {
-        this.setState({ open: true });
-    };
-    
-    handleClose = (event, reason) => {
-        if (reason === "clickaway") {
-            return;
+    handleEnter = (e) => {
+        // console.log(e)
+        if (e.key === 'Enter') {
+            this.register()
         }
-        if(this.state.errorType === "success"){
-            window.location.href = "/"
-        }
-        this.setState({ open: false });
-    };
+    }
 
-    login = () => {
+    register = () => {
         let {email, password} = this.state
         // let email = this.state.email
         // let password = this.state.password
-        // console.log(this.state)
+
         if(email && password && !(email === "" && password === "")){
             console.log(`${email} | ${password}`)
-            
-            app.auth().signInWithEmailAndPassword(email, password)
-                .then((res) => {
-                    console.log(res);
+            app.auth().createUserWithEmailAndPassword(email, password)
+                .then(res => {
+                    console.log(res)
                     this.setState({
                         errorType:"success",
-                        errorMessage:"You have now logged in, you will now be redirected to the main page"
+                        errorMessage:"The account has been created, you will now be redirected to the login page"
                     })
                     this.handleClick();
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err)
                     let { message } = err;
                     this.setState({
@@ -90,18 +83,25 @@ class Login extends React.Component {
         }
     }
 
-    handleEnter = (e) => {
-        // console.log(e)
-        if (e.key === 'Enter') {
-            this.login()
+    handleClick = () => {
+        this.setState({ open: true });
+    };
+    
+    handleClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
         }
-    }
+        if(this.state.errorType === "success"){
+            window.location.href = "/Login"
+        }
+        this.setState({ open: false });
+    };
 
     render() {
         const { classes } = this.props;
         return (
             <Paper className={classes.padding}>
-                <h1 style={{textAlign:"center"}}>Login</h1>
+                <h1 style={{textAlign:"center"}}>Signup</h1>
                 <div className={classes.margin}>
                     <Grid container spacing={8} alignItems="flex-end">
                         <Grid item>
@@ -110,10 +110,11 @@ class Login extends React.Component {
                         <Grid item md={true} sm={true} xs={true}>
                             <TextField id="username" label="Email" type="email" onChange={(e) => {
                                 e.preventDefault()
+                                // console.log(e.target.value)
                                 this.setState({
                                     email: e.target.value
                                 })
-                            }} onKeyPress={(e) => {this.handleEnter(e)}} fullWidth autoFocus required />
+                            }} onKeyPress={(e) => {this.handleEnter(e)}}  fullWidth autoFocus required />
                         </Grid>
                     </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
@@ -121,12 +122,12 @@ class Login extends React.Component {
                             <Fingerprint />
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Password" type="password" onChange={(e) => {
+                            <TextField id="password" label="Password" type="password" onChange={(e) => {
                                 e.preventDefault()
                                 this.setState({
                                     password: e.target.value
                                 })
-                            }} onKeyPress={(e) => {this.handleEnter(e)}} fullWidth required />
+                            }} onKeyPress={(e) => {this.handleEnter(e)}}  fullWidth required />
                         </Grid>
                     </Grid>
                     <Grid container alignItems="center" justify="space-between">
@@ -137,12 +138,9 @@ class Login extends React.Component {
                                 />
                             } label="Remember me" />
                         </Grid>
-                        <Grid item>
-                            <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
-                        </Grid>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none" }} onClick={() => {this.login()}}>Login</Button>
+                        <Button variant="outlined" color="primary" style={{ textTransform: "none" }} onClick={() => {this.register()}}>Signup</Button>
                     </Grid>
                 </div>
                 <Snackbar
@@ -165,8 +163,6 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    user: state.user
-})
 
-export default connect(mapStateToProps)(withStyles(styles)(Login));
+
+export default withStyles(styles)(Signup);
