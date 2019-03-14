@@ -14,7 +14,38 @@ const config = {
 }
 export default config;
 ```
+## Screenshots
+
+![1552563123579](/screenshot/phone1.png)
+
+![1552563123579](/screenshot/phone2.png)
+
+![1552563123579](/screenshot/comp1.png)
+
+
+
+![1552563123579](/screenshot/comp2.png)
+
+> Error 404 Not Found page....
+
+![1552563123579](/screenshot/comp3.png)
+
+> Sign up with error detection
+
+![1552563123579](/screenshot/comp4.png)
+
+> Login with error detection
+
+![1552563123579](/screenshot/comp5.png)
+
+
+
+![1552563123579](/screenshot/comp6.png)
+
+
+
 ## Structure
+
 firebase.js has the firebase initialisation code
 
 store.js contains the redux stuff
