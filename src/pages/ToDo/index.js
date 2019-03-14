@@ -1,14 +1,47 @@
 import React, { Component } from 'react';
+import { withStyles, Fab, Icon } from '@material-ui/core'
+// import { TrashIcon } from '@material-ui/icon'
+// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 import TabContainer from '../../components/TabContainer'
+import CardWrapper from '../../components/CardWrapper'
+
+// import { base, app as firebase } from '../../firebase'
+
+const styles = theme => ({
+  floating:{
+    position: 'absolute',
+    bottom: theme.spacing.unit * 6,
+    right: theme.spacing.unit * 6,
+  }
+})
 
 class ToDo extends Component {
+  // constructor(props){
+  //   super(props)
+  // }
+
+  addToDo = () => {
+
+  }
+
   render(){
+    const { classes } = this.props;
+
     return (<div>
       <TabContainer>
-          Itel;aksdf;kajsd;lkfajs;dlkfjas;lkdfjalks;dfjaslkdfj;alsm Two
+          <CardWrapper/>
+          <br/>
+          <CardWrapper/>
+          <br/>
+          <CardWrapper/>
+          <br/>
+          <Fab className={classes.floating} color="secondary">
+            <Icon>add</Icon>
+          </Fab>
       </TabContainer>
     </div>)
   }
 }
 
-export default ToDo;
+export default withStyles(styles, { withTheme: true })(ToDo);
