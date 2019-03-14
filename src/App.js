@@ -18,17 +18,6 @@ import MainPage from './pages/MainPage'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Error from './pages/Error'
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 const styles = {
   root: {
