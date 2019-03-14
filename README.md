@@ -16,31 +16,29 @@ export default config;
 ```
 ## Screenshots
 
-![1552563123579](/screenshot/phone1.png)
+![Phone1](/screenshot/phone1.PNG)
 
-![1552563123579](/screenshot/phone2.png)
+![Phone2](/screenshot/phone2.PNG)
 
-![1552563123579](/screenshot/comp1.png)
+![Comp1](/screenshot/comp1.png)
 
 
 
-![1552563123579](/screenshot/comp2.png)
+![Comp2](/screenshot/comp2.PNG)
 
 > Error 404 Not Found page....
 
-![1552563123579](/screenshot/comp3.png)
+![Comp3](/screenshot/comp3.PNG)
 
 > Sign up with error detection
 
-![1552563123579](/screenshot/comp4.png)
+![Comp4](/screenshot/comp4.PNG)
 
 > Login with error detection
 
-![1552563123579](/screenshot/comp5.png)
+![Comp5](/screenshot/comp5.PNG)
 
-
-
-![1552563123579](/screenshot/comp6.png)
+![Comp6](/screenshot/comp6.PNG)
 
 
 
