@@ -114,7 +114,7 @@ class MainPage extends Component {
           </Tabs>
         </AppBar>
         <Paper className={classes.content}>
-          {value === 1 && 
+          {value === 0 && 
           // Try to put this in another page
               <TabContainer>
                 <h1>This is a simple react app</h1>
@@ -129,7 +129,7 @@ class MainPage extends Component {
                   Firebase Realtime: {this.state.fireCount}
                 </h2>}
               </TabContainer>}
-          {value === 0 && (this.state.loggedIn ?
+          {value === 1 && (this.state.loggedIn ?
           //To-Do page area
             <ToDo/> : <h1 style={{textAlign:"center"}}>Please Login in order to access To-Do Section...</h1>)
           }

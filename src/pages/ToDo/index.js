@@ -25,6 +25,14 @@ class ToDo extends Component {
 
   }
 
+  editToDo = (id) => {
+
+  }
+
+  deleteToDo = (id) => {
+
+  }
+
   render(){
     const { classes } = this.props;
 
