@@ -51,6 +51,9 @@ export default User;
 > You need inheritance; look no further
 
 ```javascript
+//Make sure to import the parent class
+import User from './User';
+
 class Admin extends User{
   constructor(username, password){
     // If you don't know why we use super.... cba to explain
@@ -64,7 +67,12 @@ export default Admin;
 > Now actually using the program...
 
 ```javascript
+//Make sure to first import the classes
+import User from './User';
+import Admin from  './Admin';
+
 //Somewhere in your program....
+
 let bob = new User("bob", "asdfasd");
 let charlie = new Admin("charlie", "asdfa");
 
