@@ -14,6 +14,13 @@ const config = {
 }
 export default config;
 ```
+## Structure
+
+firebase.js has the firebase initialisation code
+store.js contains the redux stuff
+
+Work your way from index.js in src folder onto the App.js and you will be fine....
+
 ## Making Classes
 Oh yeah for those that wanted to know how to make classes:
 
