@@ -14,7 +14,9 @@ const config = {
 }
 export default config;
 ```
-[[TOC]]
+
+[TOC]
+
 
 ## Screenshots
 
@@ -133,11 +135,131 @@ bob.print();
 ## Firebase Setup
 > Make sure you have the following done on the firebase console side
 * [FirebaseConsole](https://console.firebase.google.com/u/0/) - Firebase Console
+### Getting config.js
+These are the steps:
+1. Click Settings icon on the left hand side bar
+2. Click "General" tab go to the bottom of it and click </> button
+3. Copy the config code and match it with the first picture in this readme file
+
+
+### Activating Firebase Auth - Enabling Email/Password 
 Go to Authentication bar then Sign-In method tab and make sure you have Email/Password Enabled as shown below and click Save 
-![1552563123579](/screenshot/firebase1.png)
+![FirebaseAuth](/screenshot/firebase1.png)
+
+### Realtime Database Creation
+Go to the Database bar then Data tab and make sure the Realtime Database is activated
+![FirebaseRealtime](/screenshot/firebase2.png)
+
+### Setting Security Rules for Realtime Database
+Go to the Rule tab make sure it matches the following. This is not a secure way but for development; it prevents firebase from blocking unauthorised access so for now its ok
+![FirebaseSecurity](/screenshot/firebase3.png)
+
+## Firebase Functions 
+> These are some of the functions used in this app from the firebase library
+
+```javascript
+// This is used to sign the user in
+firebase.auth().signInWithEmailAndPassword(email, password)
+
+// This is used to sign up
+firebase.auth().createUserWithEmailAndPassword(email, password)
+
+// This is used to check the current logged in user
+firebase.auth().onAuthStateChanged(user => {
+  if(user){
+    console.log("Logged in")
+    // now I can do something with the user
+    // user.uid will return the user's unique identifier
+  } else {
+    // No current user
+    console.log("Not Logged In")
+  }
+})
+```
+
+## Redux - store.js
+> Redux is usually very complicated but lets bring it down a notch
+Keywords:
+  - Store
+  - Reducer
+  - Dispatch
+
+### Store
+> Think of store as a place where you store jk... 
+
+> Think of it like a global state; so it is just like any other state but there is only one of it and it is accessible everywhere in the app
+
+Three things you need to know about the store:
+  - initialState
+  - getState()
+  - subscribe
+
+#### initialState
+> This is what you want the state to be when the app starts
+
+Example:
+```javascript
+initialState = {
+  count: 0
+}
+```
+
+#### getState()
+> Returns an object with all the variables in the state
+
+#### subscribe
+> Subscribe is a listener that takes a function and runs the function everytime there is a change in the states. It returns unsubscribe function to stop listening when that is called
+
+Example:
+```javascript
+const unsub = store.subscribe(() => {
+            console.log("changed")
+            //Prints  store
+            console.log(store.getState());
+            unsub()
+        })
+
+```
+
+### Dispatch
+> When user wants to set state they call dispatch and send data in this format
+
+```javascript
+
+const action = {
+  type: "INCREMENT", //This is used to identify what the user wants to change <- used by reducer
+  payload: { //payload is usually an object like this one has an attribute add and value that you want to add
+    add: 2 
+  }
+};
+
+store.dispatch(action) //call store.dispatch and send the action
+```
 
 
+### Reducer
+> This is basically like handle dispatch so it tells the store what to do when someone wants to make a change
 
+Example:
+```javascript
+// state=initialState sets state to initialState if it is not provided; so at the start state isn't provided so by default it would be initialState
+const reducer = (state = initialState, action) => {
+  switch(action.type){
+    case "INCREMENT":
+      // console.log(action) 
+      const { add } = action.payload; //This takes the payload and just picks "add"
+      return {
+        ...state, //This line copies everything that is currently in the state
+        count: (state.count + add) //count = state.count + add <- this is what it does
+      }
+    default: // you need to have a default !!!!
+      return state;  //If you are not doing any of the above cases then just return the state like normal 
+  }
+};
+```
+
+## MaterialUI
+> Look at thier documenation its way better than mine and it also has examples :-)
 
 ## Built With
 
@@ -153,8 +275,3 @@ Go to Authentication bar then Sign-In method tab and make sure you have Email/Pa
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
-
-
-

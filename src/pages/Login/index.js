@@ -1,7 +1,7 @@
 import React from 'react';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Face, Fingerprint } from '@material-ui/icons'
-import { firebase as app } from '../../firebase'
+import { firebase } from '../../firebase'
 
 import Snackbar from "@material-ui/core/Snackbar";
 import MySnackbarContentWrapper from '../../components/MySnackbarContentWrapper'
@@ -68,7 +68,7 @@ class Login extends React.Component {
         if(email && password && !(email === "" && password === "")){
             console.log(`${email} | ${password}`)
             
-            app.auth().signInWithEmailAndPassword(email, password)
+            firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((res) => {
                     console.log(res);
                     this.setState({
