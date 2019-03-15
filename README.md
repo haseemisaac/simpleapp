@@ -15,7 +15,28 @@ const config = {
 export default config;
 ```
 
-[TOC]
+- [This is a very simple react app with important concepts](#this-is-a-very-simple-react-app-with-important-concepts)
+  * [Screenshots](#screenshots)
+  * [File Structure](#file-structure)
+  * [Making OOP Classes](#making-oop-classes)
+  * [Firebase Setup](#firebase-setup)
+    + [Getting config.js](#getting-configjs)
+    + [Activating Firebase Auth - Enabling Email/Password](#activating-firebase-auth---enabling-email-password)
+    + [Realtime Database Creation](#realtime-database-creation)
+    + [Setting Security Rules for Realtime Database](#setting-security-rules-for-realtime-database)
+  * [Firebase Functions](#firebase-functions)
+  * [Redux - store.js](#redux---storejs)
+    + [Store](#store)
+      - [initialState](#initialstate)
+      - [getState()](#getstate--)
+      - [subscribe](#subscribe)
+    + [Dispatch](#dispatch)
+    + [Reducer](#reducer)
+  * [MaterialUI](#materialui)
+  * [Built With](#built-with)
+  * [Author](#author)
+  * [License](#license)
+
 
 
 ## Screenshots
