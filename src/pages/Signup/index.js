@@ -1,7 +1,7 @@
 import React from 'react';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Face, Fingerprint } from '@material-ui/icons'
-import { app } from '../../firebase'
+import { firebase as app } from '../../firebase'
 
 import Snackbar from "@material-ui/core/Snackbar";
 import MySnackbarContentWrapper from '../../components/MySnackbarContentWrapper'
@@ -57,8 +57,6 @@ class Signup extends React.Component {
 
     register = () => {
         let {email, password} = this.state
-        // let email = this.state.email
-        // let password = this.state.password
 
         if(email && password && !(email === "" && password === "")){
             console.log(`${email} | ${password}`)

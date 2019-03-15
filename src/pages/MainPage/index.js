@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Paper from '@material-ui/core/Paper';
+import { AppBar, Tabs, Tab, Paper } from '@material-ui/core';
 
 import store from '../../store'
-import { app } from '../../firebase'
+import { firebase } from '../../firebase'
 
 import { connect } from 'react-redux' 
 import { bindActionCreators } from 'redux'
@@ -39,6 +36,8 @@ const styles = {
 class MainPage extends Component {
   constructor(props){
     super(props);
+    console.log("store:")
+    console.log(store.getState())
     this.state = {
       value: 0,
       loggedIn: false,
@@ -69,7 +68,7 @@ class MainPage extends Component {
   getCount = (userId) => {
     //get Counter from firebase real time database
     //or create on if it doesn't exist
-    const db = app.database();
+    const db = firebase.database();
 
     db.ref('counters/' + userId).once("value", data => {
         if(data.exists()){

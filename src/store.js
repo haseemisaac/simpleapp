@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { app } from './firebase'
+import { firebase } from './firebase'
 
 const initialState = {
   count: 0,
@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer);
 
-app.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged(user => {
   if(user){
     console.log("User added to redux")
     store.dispatch({

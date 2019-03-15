@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { AppBar, Toolbar, Typography,  Button} from '@material-ui/core'
 
 import { connect } from 'react-redux' 
 import store from './store'
-import { app } from './firebase'
+import { firebase } from './firebase'
 
-import { Route } from "react-router-dom";
-import { withRouter, Switch } from 'react-router-dom'
+import { Route, withRouter, Switch } from 'react-router-dom'
 
 import MainPage from './pages/MainPage'
 import Login from './pages/Login'
@@ -89,7 +85,7 @@ class App extends Component {
 
     const signOut = (
       <Button onClick={() => {
-        app.auth().signOut();
+        firebase.auth().signOut();
         window.location.href = "/"
       }} variant="contained" color="secondary">Signout</Button>
     );

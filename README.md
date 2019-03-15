@@ -14,6 +14,8 @@ const config = {
 }
 export default config;
 ```
+[[TOC]]
+
 ## Screenshots
 
 ![1552563123579](/screenshot/phone1.png)
@@ -44,7 +46,7 @@ export default config;
 
 
 
-## Structure
+## File Structure
 
 firebase.js has the firebase initialisation code
 
@@ -55,7 +57,7 @@ Work your way from index.js in src folder onto the App.js and you will be fine..
 Components folder contains stuff that repeat like Cards....
 Pages folder is self-explanatory; bascially the pages....
 
-## Making Classes 
+## Making OOP Classes 
 Oh yeah for those that wanted to know how to make classes:
 
 ```javascript
@@ -129,5 +131,32 @@ bob.username = "bob2";
 bob.print();
 
 ```
+
+## Firebase Setup
+> Make sure you have the following done on the firebase console side
+* [FirebaseConsole](https://console.firebase.google.com/u/0/) - Firebase Console
+Go to Authentication bar then Sign-In method tab and make sure you have Email/Password Enabled as shown below and click Save 
+![1552563123579](/screenshot/firebase1.png)
+
+
+
+
+## Built With
+
+* [React.js](https://reactjs.org/) - ReactJS
+* [Redux](https://redux.js.org/) - Redux
+* [Firebase](https://firebase.google.com/) - Firebase
+* [MaterialUI](https://material-ui.com/) - MaterialUI
+
+## Author
+
+* **Haseem Isaac** - [Haseem Isaac](https://github.com/haseemisaac)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
+
 
 
