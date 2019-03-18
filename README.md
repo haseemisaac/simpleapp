@@ -165,15 +165,15 @@ These are the steps:
 
 ### Activating Firebase Auth - Enabling Email/Password 
 Go to Authentication bar then Sign-In method tab and make sure you have Email/Password Enabled as shown below and click Save 
-![FirebaseAuth](/screenshot/firebase1.png)
+![FirebaseAuth](/screenshot/firebase1.PNG)
 
 ### Realtime Database Creation
 Go to the Database bar then Data tab and make sure the Realtime Database is activated
-![FirebaseRealtime](/screenshot/firebase2.png)
+![FirebaseRealtime](/screenshot/firebase2.PNG)
 
 ### Setting Security Rules for Realtime Database
 Go to the Rule tab make sure it matches the following. This is not a secure way but for development; it prevents firebase from blocking unauthorised access so for now its ok
-![FirebaseSecurity](/screenshot/firebase3.png)
+![FirebaseSecurity](/screenshot/firebase3.PNG)
 
 ## Firebase Functions 
 > These are some of the functions used in this app from the firebase library
